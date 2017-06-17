@@ -6,24 +6,37 @@ let content = document.getElementById("content");
 let createBtn= document.getElementById("createBtn");
 let outputDiv= document.getElementById("output");
 
+let numberArray =[0, 1,2,3,4,5,6,7,8,9,10];
+
 //eventlisteners
 
 createBtn.addEventListener("click", function(){
 	let text= getText();
-	let cardText = `<div class="card" style="width: 30%; height:auto;">
-		 <img class="card-img-top" src="..." alt="Card image cap">
+	let cardText = `<div class="card">
+		 <img class="card-img-top" src="..." alt="">
 		 <div class="card-block">
 		    <h4 class="card-title">${text}</h4>
 		  </div>
 		</div>`;
-
+	//trying to create a div to house the card that will make it easier to delete?
 	let parentDiv=document.createElement("div");
 	parentDiv.innerHTML= cardText;
 	document.body.appendChild(parentDiv);
 	//append parentDiv to body of document
 
+	//create delete button
+	let deleteBtn = document.createElement("button");
+	let deleteText=document.createTextNode("Delete");
+	deleteBtn.appendChild(deleteText);
+	document.body.appendChild(deleteBtn);
+	//event listener for delete button
+	deleteBtn.addEventListener("click", function(){
+		document.body.removeChild(parentDiv);
+		document.body.removeChild(deleteBtn);
 
+	})
 })
+
 
 //functions
 function getText(){
